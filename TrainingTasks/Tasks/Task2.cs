@@ -53,7 +53,7 @@ namespace TrainingTasks
 
             while (right - left > 1)
             {
-                middle = (left + right) / 2; // при желании результат можно окуглить
+                middle = (left + right) / 2; // при желании результат можно округлить
 
                 // go to left
                 if (array[middle] < array[left])

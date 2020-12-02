@@ -50,6 +50,7 @@
     <Compile Include="Tasks\Task1.cs" />
     <Compile Include="Tasks\Task2.cs" />
     <Compile Include="Tasks\Task3.cs" />
+    <Compile Include="Tasks\Task4.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
