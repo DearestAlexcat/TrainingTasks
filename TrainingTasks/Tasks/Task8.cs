@@ -19,16 +19,12 @@ namespace TrainingTasks
 
      static void Main(string[] args)
         {
-
-            // Добавить нули
-
             int[] a1 = new int[] { 1, 3, -8, 3, -1, 2, 1 }; // 5
             int[] a2 = new int[] { -1, 10, -9, 5, 6, -10 }; // 12
             int[] a3 = new int[] { 1, 5, 7, -20, 3, 100, -250, 88, 33, 1, -40, 120 }; // 202
             int[] a4 = new int[] { -1, 12, -6, -5 };    // 11
             int[] a5 = new int[] { -1, 12, 1, 1 };      // 14
             int[] a6 = new int[] { 10, -9, 5, 6, -10, 4, 1, 2, 3 };  // 12
-
 
             List<int[]> arrays = new List<int[]>();
             arrays.Add(a1);
@@ -65,10 +61,21 @@ namespace TrainingTasks
 
             for (int i = 0; i < array.Length; i++)
             {
-                if(array[i] > 0)
-                {
-                    currentSum += array[i];
+                currentSum += array[i];
 
+                if(currentSum > lastSum)
+                {
+                    count++;
+                    index = i;
+                    lastSum = currentSum;
+                }
+                if (currentSum < 0)
+                {
+                    currentSum = 0;
+                }
+
+               /* if (array[i] > 0)
+                {
                     count++;
 
                     if (currentSum < 0)
@@ -81,15 +88,11 @@ namespace TrainingTasks
                         lastSum = currentSum;
                     }
                 }
-                else if(currentSum >= 0) // Если суммируем с отрицательным числом, то currentSum должен быть >= 0
+                else if (currentSum < 0)
                 {
-                    currentSum += array[i];
-
-                    if(currentSum < 0)
-                    {
-                        currentSum = 0;
-                    }
-                }
+                    Console.WriteLine("*");
+                    currentSum = 0;
+                }*/
             }
 
             // Если суммирование не произошло, либо все элементы отрицательны, либо только один положительный

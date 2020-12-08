@@ -55,13 +55,13 @@ namespace TrainingTasks
 
         public static void DoTask7_v2(string inputString)
         {
-            int start = 0, end = 0, i, j, count;
+            int start = 0, end = 0, count;
 
             List<KeyValuePair<int, int>> sorted = new List<KeyValuePair<int, int>>();
 
             var watch = Stopwatch.StartNew();
 
-            for (i = 0; i < inputString.Length; i++)
+            for (int i = 0; i < inputString.Length; i++)
             {
                 if(inputString[i] != ' ')
                 {
@@ -100,7 +100,7 @@ namespace TrainingTasks
             });
 
             
-            for (i = 0; i < sorted.Count; i++)
+            for (int i = 0; i < sorted.Count; i++)
                  Console.Write(inputString.Substring(sorted[i].Key, sorted[i].Value) + " ");
 
 

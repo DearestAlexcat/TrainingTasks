@@ -8,6 +8,16 @@ namespace TrainingTasks
      Идея: Необходимо избежать переполнение типа.
      */
 
+    /*
+     Main 
+     
+     static void Main(string[] args)
+        {
+            Task9.DoTask9_v1(0, 1);      
+            Console.ReadKey();
+        }
+     */
+
     class Task9
     {
         public static void DoTask9_v1(int prev, int last)

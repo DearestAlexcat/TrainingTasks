@@ -8,8 +8,8 @@ namespace TrainingTasks
     {
         static void Main(string[] args)
         {
+            Task11.DoTask11_v1("11_22_333_4_5_4_6_7");
 
-            Task9.DoTask9_v1(0, 1);      
             Console.ReadKey();
         }
     }
