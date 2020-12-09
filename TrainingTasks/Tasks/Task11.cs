@@ -11,6 +11,16 @@ namespace TrainingTasks
               повторного добавления устанавливаем false (дубликат).
      */
 
+    /*
+     
+        static void Main(string[] args)
+        {
+            Task11.DoTask11_v1("11_22_333_4_5_4_6_7");
+            Console.ReadKey();
+        }
+     
+     */
+
     class Task11
     {
         public static void DoTask11_v1(string @string)
