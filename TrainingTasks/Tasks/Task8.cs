@@ -55,9 +55,8 @@ namespace TrainingTasks
                 return;
             }
 
-            int currentSum, lastSum, index = -1;
+            int currentSum, lastSum;
             currentSum = lastSum = 0;
-            int count = 0;
 
             for (int i = 0; i < array.Length; i++)
             {
@@ -65,8 +64,6 @@ namespace TrainingTasks
 
                 if(currentSum > lastSum)
                 {
-                    count++;
-                    index = i;
                     lastSum = currentSum;
                 }
                 if (currentSum < 0)
@@ -95,34 +92,7 @@ namespace TrainingTasks
                 }*/
             }
 
-            // Если суммирование не произошло, либо все элементы отрицательны, либо только один положительный
-            if(count == 1)
-            {
-                int left = index - 1;
-                int right = index + 1;
-                lastSum = 0;
-
-                if (left < 0 && array[index] + array[right] > 0)
-                {
-                    currentSum = array[index] + array[right];
-                }
-                else if(right == array.Length && array[index] + array[left] > 0)
-                {
-                    currentSum = array[index] + array[left];
-                }
-                else
-                {
-                    currentSum = array[index] + (array[left] > array[right] ? array[left] : array[right]);
-                 
-                    if (currentSum < 0)
-                    { 
-                        currentSum = 0;
-                    }
-                }
-            }
-
-            Console.WriteLine(currentSum + " " + lastSum);
-            Console.WriteLine("Макс. сумма равна {0}", currentSum > lastSum ? currentSum : lastSum);
+            Console.WriteLine("Макс. сумма равна {0}", lastSum);
         }
     }
 }

@@ -6,14 +6,80 @@ namespace TrainingTasks
 {
     /*
      Задача: Дан числовой массив. Проверить, есть ли такие два числа в массиве, перемножив которые мы получим заданное число X.
-    
+     Идея: Задачу можно решить в лоб поиском нужных сомножетелей. 
+           Второй вариант - опеределение факта наличия нужных сомножетелей. 
      */
 
     class Task12
     {
-        public static void DoTask12_v1(int x, int[] array)
+
+        // Определяем факт начиличия сомножетелей
+
+        public static bool DoTask12_v1(int x, int[] array)
+        {
+            Dictionary<int, int> items = new Dictionary<int, int>();
+            int mod, div, count;
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                if(items.ContainsKey(array[i]))
+                {
+                    items[array[i]]++;
+                }
+                else
+                {
+                    items.Add(array[i], 1);
+                }
+            }
+   
+            foreach (var item in items)
+            {
+                div = x / item.Key;
+                mod = x % item.Key;
+
+                if(mod == 0)
+                {
+                    count = items.ContainsKey(div) ? items[div] : 0;
+
+                    // x = div * div
+                    // x = div * item
+
+                    if (div == item.Key && count > 1 ||
+                        div != item.Key && count > 0)
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static bool DoTask12_v2(int x, int[] array)
+        {
+            List<int> items = new List<int>();
+            int mod, div;
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                mod = x % array[i];
+                if (mod == 0 && !items.Contains(array[i]))
+                {
+                    items.Add(array[i]);
+                }
+            }
+
+            foreach (var item in items)
+            {
+                div = x / item;
+                if(items.Contains(div))
+                    return true;
+            }
+
+            return false;
+        }
+
+        public static void DoTask12_v3(int x, int[] array)
         { 
-            var watch = Stopwatch.StartNew();
+            
             int counter = 0;
             for (int i = 0; i < array.Length - 1; i++)
             {
@@ -24,10 +90,6 @@ namespace TrainingTasks
                     if (array[i] * array[j] == x)
                     {
                         Console.WriteLine("{0} * {1} = {2}", array[i], array[j], x);
-                        
-                        watch.Stop();
-                        Console.WriteLine(watch.Elapsed.TotalMilliseconds + " " + watch.Elapsed.Ticks);
-
                         Console.WriteLine(counter);
                         return;
                     }
@@ -38,9 +100,8 @@ namespace TrainingTasks
             Console.WriteLine("- " + counter);
         }
 
-        public static void DoTask12_v2(int x, int[] array)
+        public static void DoTask12_v4(int x, int[] array)
         {
-            var watch = Stopwatch.StartNew();
             int counter = 0;
 
             List<int> nums = new List<int>();
@@ -63,10 +124,6 @@ namespace TrainingTasks
                     if (nums[i] * nums[j] == x)
                     {
                         Console.WriteLine("{0} * {1} = {2}", nums[i], nums[j], x);
-                       
-                        watch.Stop();
-                        Console.WriteLine(watch.Elapsed.TotalMilliseconds + " " + watch.Elapsed.Ticks);
-
                         Console.WriteLine(counter);
                         return;
                     }
@@ -77,10 +134,8 @@ namespace TrainingTasks
             Console.WriteLine("- " + counter);
         }
 
-        public static void DoTask12_v3(int x, int[] array)
+        public static void DoTask12_v5(int x, int[] array)
         {
-            var watch = Stopwatch.StartNew();
-
             List<int> nums = new List<int>();
             Array.Sort(array);
 
@@ -95,9 +150,6 @@ namespace TrainingTasks
                     if (nums.BinarySearch(x / array[i]) > 0)
                     {
                         Console.WriteLine("{0} * {1} = {2}", array[i], x / array[i], x);
-
-                        watch.Stop();
-                        Console.WriteLine(watch.Elapsed.TotalMilliseconds + " " + watch.Elapsed.Ticks);
                         return;
                     }
                 }
