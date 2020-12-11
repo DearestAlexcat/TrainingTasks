@@ -41,6 +41,10 @@ namespace TrainingTasks
             if (string.IsNullOrEmpty(str) || string.IsNullOrWhiteSpace(str))
                 return false;
 
+            // Строка длинной в 1 символ будет считаться палиндромом
+            if (str.Length == 1)
+                return true;
+            
             int counter = 0;
 
             List<char> container = new List<char>();
@@ -59,8 +63,9 @@ namespace TrainingTasks
                 }
             }
 
-            return (str.Length & 1) == 0 && counter == 0 || 
-                   (str.Length & 1) != 0 && counter == 1;
+            return counter <= 1;
+           /* return (str.Length & 1) == 0 && counter == 0 || 
+                   (str.Length & 1) != 0 && counter == 1;  */
         }
 
         public static bool DoTask5_v2(string str)
