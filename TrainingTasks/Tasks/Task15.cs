@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace TrainingTasks
 {
@@ -20,17 +19,36 @@ namespace TrainingTasks
     {
         public static void DoTask15_v1(params int[] array)
         {
+            int[] left = new int[array.Length];
+            int[] right = new int[array.Length];
+            int leftMax, rightMax, i;
 
-            int maxLeft, maxRigt;
-            int max;
+            leftMax = array[0];
+            rightMax = array[array.Length - 1];
 
-            max = array[0];
-            for (int i = 0; i < array.Length; i++)
+            int rightPivot = array.Length - 1;
+
+            for (i = 0; i < array.Length; i++, rightPivot--)
             {
+                if (leftMax < array[i])
+                    leftMax = array[i];
+                left[i] = leftMax - array[i];
 
+                // ------------------------------------------
+
+                if (rightMax < array[rightPivot])
+                    rightMax = array[rightPivot];
+                right[rightPivot] = rightMax - array[rightPivot];
             }
 
+            int V = 0;
 
+            for (i = 0; i < array.Length; i++)
+            {
+                V += left[i] < right[i] ? left[i] : right[i];
+            }
+
+            Console.WriteLine(V);
         }
     }
 }
