@@ -8,8 +8,14 @@ namespace TrainingTasks
     {
         static void Main(string[] args)
         {
-           
-            Task15.DoTask15_v1(3, 6, 2, 4, 2, 3, 2, 10, 10, 4);
+
+           //int[] arr = new int[] { 1, 3, 2, 8, 3, 1, 2, 4, 4, 5, 9, 9 };
+            int[] arr = new int[] { 0, 4, -1, 7, -1, 4, 9, 0 }; // 7 9
+
+            Task18.DoTask18_v0(arr);
+            Task18.DoTask18_v1(arr);
+            Task18.DoTask18_v2(arr);
+            Task18.DoTask18_v3(arr);
 
             Console.ReadKey();
         }
