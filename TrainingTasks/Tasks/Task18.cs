@@ -11,13 +11,49 @@ namespace TrainingTasks
 
            Можно разобрать несколько случаев для реализации
                1) В массиве не имеет пары только 1 элемент
-               2) не имеют пары 2 элемента
                3) не имеют пары n элементов
     */
 
     class Task18
     {
+        /// <summary>
+        /// Случай когда 1 или 2 элемента не имееют пары
+        /// </summary>
         public static void DoTask18_v0(params int[] array)
+        {
+            if (array == null || array.Length == 0) { throw new ArgumentNullException(nameof(array) + " is null"); }
+
+            int first = 0, second = 0;
+            int result = array[0];
+
+            for (int i = 1; i < array.Length; i++)
+            {
+                result ^= array[i];
+            }
+
+            int temp;
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                temp = result ^ array[i];
+
+                if ((first ^ array[i]) != result || (temp & first) != temp || result == 0)
+                {
+                    first ^= array[i];
+                }
+                else
+                {
+                    second ^= array[i];
+                }          
+            }
+
+            Console.WriteLine(first + " " + second);
+        }
+
+        /// <summary>
+        /// Случай для n элементов, через сортировку
+        /// </summary>
+        public static void DoTask18_v1(params int[] array)
         {
             Array.Sort(array);
 
@@ -48,81 +84,9 @@ namespace TrainingTasks
             Console.WriteLine();
         }
 
-
-        // Обрабатывает случай если только два элемента не имеют пары
-        // Метод в доработке
-        public static void DoTask18_v1(params int[] array)
-        {
-            if (array == null || array.Length == 0) { throw new ArgumentNullException(nameof(array) + " is null"); }
-
-            int first = 0, second = 0;
-            int result = array[0];
-
-            for (int i = 1; i < array.Length; i++)
-            {
-                result ^= array[i];
-            }
-
-            bool condition;
-
-            for (int i = 0; i < array.Length; i++)
-            {
-                condition = (first & array[i]) == array[i] || first == 0 && (second & array[i]) != array[i];
-
-                if (condition)
-                {
-                    first ^= array[i];
-                }
-                else
-                {
-                    second ^= array[i];
-                }
-            }
-
-            Console.WriteLine("1) " + first + " " + second);
-
-            first = second = 0;
-            // До упрошения
-
-            #region
-            for (int i = 0; i < array.Length; i++)
-            {
-                if ((result & array[i]) == array[i] && (first & array[i]) == array[i])
-                {
-                    first ^= array[i];
-                }
-                else if ((second & array[i]) == array[i])
-                {
-                    second ^= array[i];
-                }
-                else
-                {
-                    if ((first & array[i]) == array[i])
-                    {
-                        first ^= array[i];
-                    }
-                    else if ((second & array[i]) == array[i])
-                    {
-                        second ^= array[i];
-                    }
-                    else
-                    {
-                        if (first == 0)
-                        {
-                            first ^= array[i];
-                        }
-                        else
-                        {
-                            second ^= array[i];
-                        }
-                    }
-                }
-            }
-            Console.WriteLine("2) " + first + " " + second);
-            #endregion
-        }
-
-        // Обрабатывает случай если только один элемент не имеет пары
+        /// <summary>
+        /// Случай для 1-го элемента
+        /// </summary>
         public static void DoTask18_v2(params int[] array)
         {
             if (array == null || array.Length == 0) { throw new ArgumentNullException(nameof(array) + " is null"); }
@@ -136,7 +100,9 @@ namespace TrainingTasks
             Console.WriteLine(result + " ");
         }
 
-
+        /// <summary>
+        /// Случай для n элементов, через словарь
+        /// </summary>
         public static void DoTask18_v3(params int[] array)
         {
             if (array == null || array.Length == 0) { throw new ArgumentNullException(nameof(array) + " is null"); }
@@ -165,8 +131,5 @@ namespace TrainingTasks
 
             Console.WriteLine();
         }
-
-       
-
     }
 }
